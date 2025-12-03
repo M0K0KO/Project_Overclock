@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9752b0c8e144801967e6897679604b, type: 3}
+  m_Name: vHierarchy Data
+  m_EditorClassIdentifier: VHierarchy::VHierarchy.VHierarchyData
+  sceneDatas_byGuid:
+    keys:
+    - 1ab51025232a0fa489dcf04ce6599bf1
+    - 30c2dbdba096da344b8669c7f3b6ebcb
+    values:
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-536893075304931920-1804638740
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-1546832864-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-629925655-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-165725023-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-417366340-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-880535635-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-2077980482-0
+        - globalObjectIdString: GlobalObjectId_V1-2-1ab51025232a0fa489dcf04ce6599bf1-573749239-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 0
+          iconNameOrGuid: Terrain Icon
+        - colorIndex: 0
+          iconNameOrGuid: DirectionalLight Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: cs Script Icon
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 6
+          iconNameOrGuid: Folder Icon
+        - colorIndex: 8
+          iconNameOrGuid: Folder Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-549726068-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-155995429-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1531845858-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1962756238832140346-6975070287752352335
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1008806984-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1103018823-0
+        values:
+        - colorIndex: 5
+          iconNameOrGuid: Folder Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: Terrain Icon
+        - colorIndex: 0
+          iconNameOrGuid: DirectionalLight Icon
