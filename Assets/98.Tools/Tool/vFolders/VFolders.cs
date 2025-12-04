@@ -50,7 +50,7 @@ namespace VFolders
 
             EditorWindow browser = null;
             Tree tree = null;
-            TreeViewItem treeItem = null;
+            TreeViewItem<int> treeItem = null;
 
             var isTreeFocused = false;
             var isRowSelected = false;
@@ -101,7 +101,7 @@ namespace VFolders
 
                     try
                     {
-                        treeItem = (TreeViewItem)Tree.mi_data_GetItem.Invoke(tree.data, new object[] { rowIndex });
+                        treeItem = (TreeViewItem<int>)Tree.mi_data_GetItem.Invoke(tree.data, new object[] { rowIndex });
                     }
                     catch
                     {
@@ -116,7 +116,7 @@ namespace VFolders
 
                     var instanceId = typeof(AssetDatabase).InvokeMethod("GetMainAssetOrInProgressProxyInstanceID", guid.ToPath());
 
-                    treeItem = tree.treeViewController.InvokeMethod<TreeViewItem>("FindItem", instanceId);
+                    treeItem = tree.treeViewController.InvokeMethod<TreeViewItem<int>>("FindItem", instanceId);
 
                 }
 
@@ -470,8 +470,8 @@ namespace VFolders
 
                     var depth = ((rowRect.x - 16) / 14).RoundToInt();
 
-                    bool isLastChild(TreeViewItem item) => item.parent?.children?.LastOrDefault() == item;
-                    bool hasChilren(TreeViewItem item) => item.children != null && item.children.Count > 0;
+                    bool isLastChild(TreeViewItem<int> item) => item.parent?.children?.LastOrDefault() == item;
+                    bool hasChilren(TreeViewItem<int> item) => item.children != null && item.children.Count > 0;
 
                     void calcVerticalGaps_beforeFirstRowDrawn()
                     {
@@ -725,7 +725,7 @@ namespace VFolders
 
         static Vector2 lastKnownMousePosition_screenSpace;
         static Rect lastHoveredRowRect_screenSpace;
-        static TreeViewItem lastHoveredTreeItem;
+        static TreeViewItem<int> lastHoveredTreeItem;
 
 
 
@@ -1315,7 +1315,7 @@ namespace VFolders
 
 
 
-                var parents = new List<TreeViewItem>();
+                var parents = new List<TreeViewItem<int>>();
 
                 for (var cur = lastHoveredTreeItem.parent; cur != null; cur = cur.parent)
                     parents.Add(cur);
@@ -1388,7 +1388,7 @@ namespace VFolders
             public bool animatingExpansion =>
                 treeViewController?.GetPropertyValue<bool>("animatingExpansion") ?? false;
 
-            public bool IsExpanded(TreeViewItem treeItem) => expandedIds.Contains(treeItem.id);
+            public bool IsExpanded(TreeViewItem<int> treeItem) => expandedIds.Contains(treeItem.id);
 
 
             public List<ExpandQueueEntry> expandQueue_toAnimate = new List<ExpandQueueEntry>();
