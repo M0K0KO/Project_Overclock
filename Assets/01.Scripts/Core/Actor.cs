@@ -3,31 +3,21 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     public string actorName { get; protected set; }
-    public ActorContext actorContext { get; private set; } = new ActorContext();
+    public ActorType actorType { get; protected set; }
+    public ActorContext actorContext { get; protected set; } = new ActorContext();
     public bool initialized { get; protected set; }
 
+    protected virtual void Awake() { Initialize(); }
+    
     public virtual void Initialize()
     {
         actorContext.transform = transform;
         actorContext.cc = GetComponent<CharacterController>();
         actorContext.animator = GetComponent<Animator>();
 
+        actorContext.movementContext = new MovementContext();
+
         initialized = true;
-    }
-
-    public virtual Vector3 GetPosition()
-    {
-        return actorContext.transform.position;
-    }
-
-    public virtual Quaternion GetRotation()
-    {
-        return actorContext.transform.rotation;
-    }
-
-    public virtual Vector3 GetVelocity()
-    {
-        return default;
     }
 
     public virtual void OverridePosition(Vector3 position) { }

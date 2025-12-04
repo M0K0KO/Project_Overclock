@@ -52,6 +52,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1962756238832140346-6975070287752352335
         - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1008806984-0
         - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-1103018823-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30c2dbdba096da344b8669c7f3b6ebcb-713677856-0
         values:
         - colorIndex: 5
           iconNameOrGuid: Folder Icon
@@ -65,3 +66,5 @@ MonoBehaviour:
           iconNameOrGuid: Terrain Icon
         - colorIndex: 0
           iconNameOrGuid: DirectionalLight Icon
+        - colorIndex: 9
+          iconNameOrGuid: Folder Icon
