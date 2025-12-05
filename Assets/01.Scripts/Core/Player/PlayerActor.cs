@@ -11,7 +11,8 @@ public class PlayerActor : Actor
         base.Initialize();
         
         var playerContext = (PlayerContext)actorContext;
-        playerContext.playerInput = GetComponent<PlayerInput>();
+        playerContext.inputAdapter = GetComponent<PlayerInputAdapter>();
+        playerContext.animDriver = GetComponent<PlayerAnimDriver>();
         playerContext.playerCam = Camera.main;
     }
 }

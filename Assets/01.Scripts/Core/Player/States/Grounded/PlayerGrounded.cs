@@ -17,5 +17,9 @@
 
     protected override void OnEnter()
     {
+        if (ctx.movementContext.jumpCount == 1) ctx.animDriver.PlayLocomotion("Landing1", 0.2f);
+        if (ctx.movementContext.jumpCount == 2) ctx.animDriver.PlayLocomotion("Landing2", 0.3f);
+
+        ctx.movementContext.jumpCount = 0;
     }
 }

@@ -15,4 +15,9 @@ public class PlayerIdle : PlayerState
     protected override void OnEnter()
     {
     }
+
+    protected override void OnUpdate(float deltaTime)
+    {
+        ctx.animDriver.UpdateLocomotionParams(ctx.movementContext.velocity, ctx.movementContext.isGrounded, ctx.movementContext.jumpCount);
+    }
 }

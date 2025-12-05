@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputAdapter : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
 
@@ -10,15 +9,18 @@ public class PlayerInput : MonoBehaviour
     private InputAction jumpAction;
 
     public Vector2 moveInput { get; private set; } = Vector2.zero;
-    
-    public bool jumpRequested { get; private set; } = false;
-    public float lastJumpRequestTime { get; private set; }
 
+
+    [SerializeField] private float jumpBufferTime = 0.15f;
+    public InputBuffer commandBuffer { get; private set; }
+    
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         movementAction = playerInputActions.Gameplay.Movement;
         jumpAction = playerInputActions.Gameplay.Jump;
+
+        commandBuffer = new InputBuffer(jumpBufferTime);
     }
 
     private void OnEnable()
@@ -52,17 +54,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        jumpRequested = true;
-        lastJumpRequestTime = Time.time;
-    }
-
-    #endregion
-
-    #region Consumes
-
-    public void ConsumeJumpInput()
-    {
-        jumpRequested = false;
+        commandBuffer.Enqueue(PlayerCommandType.Jump, Time.time);
     }
 
     #endregion

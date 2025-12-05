@@ -12,5 +12,11 @@ public class PlayerFall : PlayerState
 
     protected override void OnEnter()
     {
+        ctx.animDriver.PlayLocomotion("Fall", 0.2f);
+    }
+    
+    protected override void OnUpdate(float deltaTime)
+    {
+        ctx.animDriver.UpdateLocomotionParams(ctx.movementContext.velocity, ctx.movementContext.isGrounded, ctx.movementContext.jumpCount);
     }
 }

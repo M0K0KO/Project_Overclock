@@ -5,7 +5,7 @@ public class VoluntaryMovement : MonoBehaviour, IMovementSource
 {
     private PlayerContext playerContext;
     private MovementContext movementContext;
-    private PlayerInput playerInput;
+    private PlayerInputAdapter inputAdapter;
 
     [SerializeField] private float moveSpeed = 12f;
     [SerializeField] private float jumpSpeed = 25f;
@@ -21,19 +21,19 @@ public class VoluntaryMovement : MonoBehaviour, IMovementSource
         var context = actor.actorContext;
 
         movementContext = context.movementContext;
-        playerInput = (context as PlayerContext)?.playerInput;
+        inputAdapter = (context as PlayerContext)?.inputAdapter;
         playerContext = context as PlayerContext;
     }
 
     public Vector3 CalculateVelocity()
     {
-        if (!playerInput || playerContext == null || !playerContext.playerCam)
+        if (!inputAdapter || playerContext == null || !playerContext.playerCam)
             return Vector3.zero;
         
-        Vector2 inputDir = playerInput.moveInput;
+        Vector2 inputDir = inputAdapter.moveInput;
         Vector3 horizontalVelocity = CalculateHorizontalVelocity(inputDir);
         Vector3 verticalVelocity = CalculateVerticalVelocity();
-
+        
         return (horizontalVelocity * moveSpeed) + verticalVelocity;
     }
 
@@ -42,13 +42,15 @@ public class VoluntaryMovement : MonoBehaviour, IMovementSource
         float currentYVelocity = movementContext.velocity.y;
         float targetYVelocity = currentYVelocity;
 
-        bool canJump = IsGroundedOrCoyote() && HasBufferedJump();
-
-        if (canJump)
+        Logwin.Log("JumpCount", movementContext.jumpCount, "Player");
+        
+        if ((IsGroundedOrCoyote() || CanDoubleJump()) && inputAdapter.commandBuffer.TryConsume(PlayerCommandType.Jump, Time.time))
         {
             targetYVelocity = jumpSpeed;
-            playerInput.ConsumeJumpInput();
+            movementContext.jumpCount++;
             movementContext.justJumped = true;
+
+            if (movementContext.jumpCount == 2) movementContext.shouldPlayDoubleJumpAnimation = true;
         }
         else if (movementContext.isGrounded)
         {
@@ -76,8 +78,11 @@ public class VoluntaryMovement : MonoBehaviour, IMovementSource
         return moveDir;
     }
     
-    private bool HasBufferedJump() =>
-        playerInput.jumpRequested && Time.time - playerInput.lastJumpRequestTime <= jumpBufferTime;
     private bool IsGroundedOrCoyote() =>
         movementContext.isGrounded || Time.time - movementContext.lastGroundedTime <= coyoteTime;
+
+    private bool CanDoubleJump()
+    {
+        return movementContext.jumpCount == 1 && !movementContext.isGrounded;
+    }
 }

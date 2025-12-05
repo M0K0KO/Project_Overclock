@@ -27,5 +27,10 @@ public class PlayerAirborne : PlayerState
 
     protected override void OnEnter()
     {
+        if (ctx.movementContext.jumpCount == 0) ctx.movementContext.jumpCount++;
+    }
+
+    protected override void OnExit()
+    {
     }
 }

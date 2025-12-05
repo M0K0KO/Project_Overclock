@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerContext : ActorContext
 {
-    public PlayerInput playerInput;
+    public PlayerInputAdapter inputAdapter;
+    public PlayerAnimDriver animDriver;
     public Camera playerCam;
 }
