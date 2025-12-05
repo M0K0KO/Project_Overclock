@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 
+using MiniTools.BetterGizmos;
 using UnityEngine;
 
 public class MovementVectorGizmoDrawer : MonoBehaviour
@@ -17,12 +18,11 @@ public class MovementVectorGizmoDrawer : MonoBehaviour
 
     public void DrawVelocityGizmo(Vector3 origin, Vector3 velocity, Color horizontalColor, Color verticalColor)
     {
-        if (velocity == Vector3.zero) return;
-
-        Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
         Vector3 verticalVelocity = new Vector3(0f, velocity.y, 0f);
-        DrawArrowGizmo(origin, horizontalVelocity / 10f, horizontalColor);
         DrawArrowGizmo(origin, verticalVelocity / 10f, verticalColor);
+        
+        Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
+        DrawArrowGizmo(origin, horizontalVelocity / 10f, horizontalColor);
     }
 
     public void DrawArrowGizmo(Vector3 origin, Vector3 destination, Color color, bool normalize = false)

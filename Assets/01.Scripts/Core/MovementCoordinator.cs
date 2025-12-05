@@ -54,7 +54,8 @@ public class MovementCoordinator : MonoBehaviour
         
 #if UNITY_EDITOR
         Logwin.Log("Player isGrounded", movementContext.isGrounded, "Player");
-        Logwin.Log("Player VerticalVelocity", movementContext.velocity.y, "Player");
+        Logwin.Log("Player VerticalVelocity", movementContext.verticalVelocity, "Player");
+        Logwin.Log("Player HorizontalVelocity", movementContext.horizontalVelocity, "Player");
 #endif
     }
 
@@ -80,7 +81,7 @@ public class MovementCoordinator : MonoBehaviour
 #if UNITY_EDITOR
         if (!movementContext.wasGroundedLastFrame && isGroundedThisFrame)
         {
-            Logwin.Log("Player Landing", "Played Landed!", "Player");
+            Logwin.Log("Player Landing", "Played Landed!", "Player", new LogwinParam());
         }
 #endif
         

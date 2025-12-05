@@ -6,19 +6,19 @@ public class PlayerStateDriver : MonoBehaviour
 {
     private Actor actor;
     private ActorContext context;
-    private MovementContext movementContext;
 
     private string lastPath;
 
     private StateMachine machine;
     private State root;
-
+    
     private void Start()
     {
         actor = GetComponent<Actor>();
         context = actor.actorContext;
-        movementContext = context.movementContext;
-
+        
+        PlayerStatesRegistry.Clear();
+        
         root = new PlayerRoot(null, context as PlayerContext);
         var builder = new StateMachineBuilder(root);
 
@@ -32,13 +32,13 @@ public class PlayerStateDriver : MonoBehaviour
         var path = StatePath(machine.root.Leaf());
         if (path != lastPath)
         {
-            Logwin.Log("State", path, "Player", LogwinParam.Color(Color.cyan));
+            Logwin.Log("PlayerState", path, "Player", LogwinParam.Color(Color.cyan));
             lastPath = path;
         }
     }
 
     static string StatePath(State s)
     {
-        return string.Join(" > ", s.PathToRoot().AsEnumerable().Reverse().Select(n => n.GetType().Name));
+        return string.Join(" > ", s.PathToRoot().AsEnumerable().Reverse().Select(n => n.GetType().Name.Replace("Player", "")));
     }
 }
